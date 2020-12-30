@@ -1,0 +1,12 @@
+Rmove: -0.3
+Rgoal: 30
+Rwrong: -15
+epsilon: 0.15
+gamma: 0.9
+alpha: 0.3
+K: 500
+softmax_temperature: 1
+lim: 10
+scale_factor: 50
+epochs: 3000
+iterations: 10000
