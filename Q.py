@@ -5,6 +5,7 @@ from math import exp
 import time
 from aux_Q import *
 import yaml
+from tqdm import tqdm
 
 
 config = yaml.safe_load(open("config.yaml", "r"))
@@ -75,14 +76,7 @@ def reward(s, goal, state_blocks, action, action_blocks):
         return Rmove
 
 
-def alpha_cool(timestep):
-    alpha = config['alpha']
-    K = config['K']
-    timestep = timestep
-    return alpha*(K/(K + timestep))
-
-
-def episode(Q, state_blocks, action_blocks, init, goal, alpha, update=False):
+def episode(Q, state_blocks, action_blocks, init, goal, update=False):
     s = state(init[0], init[1], False)
     s.set_init(init)
     s.set_goal(goal)
@@ -113,23 +107,22 @@ def train(Q, state_blocks, action_blocks, epochs, iterations):
     start = time.time()
     aT = []
     aR = []
-    for epoch in range(epochs):
-        print("Simulating Epoch", epoch)
+    for epoch in tqdm(range(epochs)):
+        #print("Simulating Epoch", epoch)
         goal = goal_gen()
+        init = init_gen()
         avgReturn = 0
         for iteration in range(iterations):
-            init = init_gen()
-            alpha = alpha_cool(iteration)
             moves, Return = episode(
-                Q, state_blocks, action_blocks, init, goal, alpha, True)
+                Q, state_blocks, action_blocks, init, goal, True)
             avgReturn = (avgReturn*(iteration) + Return)/(iteration+1)
         aT.append((time.time()-start))
         aR.append(avgReturn)
         start = time.time()
-        if (epoch+1) % 100 == 0 and epoch > 0:
-            plot(aT, aR, epoch+1)
+        if (epoch+1) % (epochs//20) == 0 and epoch > 0:
+            plot(aT, aR, epoch+1, epochs//20)
     dump(Q, state_blocks, action_blocks, lim)
-    plot(aT, aR, epochs)
+    plot(aT, aR, epochs, epochs//20)
 
 
 def sim(Q, state_blocks, action_blocks, init, goal):

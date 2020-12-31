@@ -121,7 +121,7 @@ def main(args):
         Q = create()
         avg = train(Q, state_blocks, action_blocks, epoch, iterations)
     else:
-        Q, state_blocks, action_blocks = load(args[2])
+        Q, state_blocks, action_blocks = load(args[2], lim)
         if args[0] in ["True", "true"]:
             inits, goals = random_gen(state_blocks)
         else:

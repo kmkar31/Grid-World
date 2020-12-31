@@ -3,10 +3,10 @@ Rgoal: 30
 Rwrong: -15
 epsilon: 0.15
 gamma: 0.9
-alpha: 0.3
-K: 500
+alpha: 0.5
 softmax_temperature: 1
 lim: 10
 scale_factor: 50
-epochs: 3000
-iterations: 10000
+epochs: 500
+iterations: 100
+root_dir: "app"
