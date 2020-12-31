@@ -33,4 +33,10 @@ there are **1 million** states. So the Q[s][a] would be a matrix with 5 million 
 
   * #### Actions Selected according to Softmax:
 	![Working gif](Outputs/Softmax.gif)
-      
+      	
+	<details><summary><b>View More</b></summary>
+	
+	![Working gif](Outputs/10x10_0.1_softmax.jpg)
+	![Working gif](Outputs/10x10_0.1_softmax_2.jpg)
+	
+	</details>
