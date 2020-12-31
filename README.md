@@ -36,7 +36,7 @@ there are **1 million** states. So the Q[s][a] would be a matrix with 5 million 
       	
 	<details><summary><b>View More</b></summary>
 	
-	![Working gif](Outputs/10x10_0.1_softmax.jpg)
-	![Working gif](Outputs/10x10_0.1_softmax_2.jpg)
+	![Op1](Outputs/10x10_0.1_softmax_1.jpg)
+	![Op2](Outputs/10x10_0.1_softmax_2.jpg)
 	
 	</details>
